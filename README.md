@@ -1,6 +1,6 @@
-# Virtual Credits Cards
+# Virtual Credit Cards
 
-Create Virtuals Credits Cards completely FREE.
+Create Virtuals Credit Cards completely FREE.
 
 # Requirements
 
@@ -20,10 +20,10 @@ Then open the another file named "vi_cr_ca.pyw".
 
 The program "vcc_server.pyw" is the server. The accounts are saved and showed in this program.
 
-For starting you should make a account (for testing the program). For do that then click the option "Cuentas" in the principal menu.
+For starting you should make a account (for testing the program). For do that then click the option "Cuentas" in the principal menu, and press "Nueva" or do the keyboard combination "Ctrl+N".
 
-Add a starting money amount. Then add a "Cedula" (it means "Identification card", it's only a number that identifies a account). And finally add a password.
+Put a starting money amount. Then put a "Cedula" (it means "Identification card", it's only a number that identifies a account). And finally put a password.
 
-In the program "vi_cr_ca.pyw" add a money amount that you'll subtract to the account. Put the "Cedula" (I already explained what it is). And put the password.
+In the program "vi_cr_ca.pyw" put a money amount that you'll subtract to the account. Put the "Cedula" (I already explained what it is). And put the password.
 
 And then you have seen the magic of this program :)
