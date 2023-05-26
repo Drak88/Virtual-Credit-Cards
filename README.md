@@ -12,7 +12,7 @@ If you use Windows 7 you should install the version "3.6.0"
 
 # Setup
 
-Open the file "vcc_server.py". If a window named "Open with" (or something) appears the search the program "pythonw.exe" in the Python folder.
+Open the file "vcc_server.py". If a window named "Open with" (or something) appears then search the program "pythonw.exe" in the Python folder.
 
 Then open the another file named "vi_cr_ca.pyw".
 
