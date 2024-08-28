@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import ttk
+from tkinter.messagebox import askyesno, showinfo, showerror, askquestion
 import funcs_s as funcs
 
 import base64 as b64
@@ -116,31 +117,80 @@ def newAccount(event=None):
         data['password'] = ps
         funcs.Account(int(data['money']),data['cedula'],data['password'])
         loadAccounts()
-    nwnd = NewAccount(callback=callback)
+    NewAccount(callback=callback)
+
+def removeAccount(event=None):
+    def getResponse(res):
+        if res == "" or not askyesno("Eliminar cuenta","¿Seguro que desea eliminar la cuenta?"):
+            return
+        
+        funcs.accounts.pop(res.split("|")[0])
+        loadAccounts()
+    funcs.AskAccount("Eliminar cuenta",getResponse)
+
+def modifyAccount(event=None):
+    def getResponse(res: str):
+        if res == "" or res.split("|")[0] == "" or res.split("|")[1] == "":
+            return
+        
+        funcs.accounts[res.split("|")[0]].money = int(res.split("|")[1])
+
+        loadAccounts()
+        showinfo("Modificacion","La modificacion se ha realizado correctamente.")
+
+    funcs.AskAccount("Modificar cuenta",getResponse,input1text="Cedula",input2text="Saldo nuevo",modifiying=True)
+
+def bonification(event=None):
+    def getResponse(res):
+        if res == "":
+            return
+        elif not res.isdigit():
+            showerror("Error","El valor introducido no es un numero.")
+            return
+        for ac in funcs.accounts.values():
+            ac.moneyMore(int(res))
+
+    funcs.AskAccount("Bono",getResponse,input1text="¿Cual sera el valor del bono?",input2text="")
+    loadAccounts()
 
 def on_request(msg,addr):
     req = msg.split(" ")
 
     if msg == "exit":
-        return
+        return "exiting"
 
     if req[0] == "open":
+        if not req[1] in funcs.accounts:
+            return "1:La cedula actual no existe"
         if funcs.accounts[req[1]].password == req[2]:
             funcs.ac_ip[req[1]] = addr[0]
+        else:
+            return "1:Contraseña incorrecta"
 
     if req[0] == "close":
         if funcs.accounts[req[1]].password == req[2] and req[1] in funcs.ac_ip:
             funcs.ac_ip.pop(req[1])
+        else:
+            return "1"
 
     if req[0] == "less":
         if funcs.accounts[req[2]].password == req[3] and req[2] in funcs.ac_ip:
-            funcs.accounts[req[2]].money -= int(req[1])
+            if funcs.accounts[req[2]].money >= int(req[1]):
+                funcs.accounts[req[2]].moneyLess(int(req[1]))
+            else:
+                return "1:Saldo insuficiente"
+        else:
+            return "1:Contraseña incorrecta"
 
     if req[0] == "more":
         if funcs.accounts[req[2]].password == req[3] and req[2] in funcs.ac_ip:
             funcs.accounts[req[2]].money += int(req[1])
+        else:
+            return "1"
 
-    loadAccounts()
+    if req[len(req)-1] == "true":
+        loadAccounts()
+    return "0"
 
 # Tkinter's magic again
 
@@ -160,7 +210,21 @@ accounts.add_command(
     accelerator="Ctrl+N",
     command=newAccount
 )
+accounts.add_command(
+    label="Eliminar",
+    command=removeAccount
+)
+accounts.add_command(
+    label="Modificar",
+    accelerator="Ctrl+M",
+    command=modifyAccount
+)
+accounts.add_command(
+    label="Bono",
+    command=bonification
+)
 wnd.bind_all(sequence="<Control-n>",func=newAccount)
+wnd.bind_all(sequence="<Control-m>",func=modifyAccount)
 
 menubar.add_cascade(menu=accounts,label="Cuentas")
 
@@ -178,7 +242,7 @@ funcs.stopServer()
 
 lines: str = ""
 for i in funcs.accounts:
-    lines += funcs.accounts[i].__str__()+"\r\n"
+    lines += funcs.accounts[i].asString()+"\r\n"
 
 if len(lines) > 0:
     lines = lines[:-2]
