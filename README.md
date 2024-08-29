@@ -1,29 +1,34 @@
 # Virtual Credit Cards
 
-Create Virtuals Credit Cards completely FREE.
+(README) Version in Spanish.
 
-# Requirements
+Un simulador de tarjetas de debito virtuales, y si, a pesar de que el nombre del proyecto dice lo contrario, son de debito. Y ante todos son tarjetas falsas, que sirven para mera experimentacion.
 
-Python
+\[Esto es un proyecto sin fines de lucro. Aplicando la **Licencia CC BY** (Creative Commons Attribution).\]
 
-Install Python from https://www.python.org/downloads/
+# Requisitos
 
-If you use Windows 7 you should install the version "3.6.0"
+- Python. Descargalo desde https://www.python.org/downloads/
 
-# Setup
+# Montar el programa / Setup
 
-Open the file "vcc_server.py". If a window named "Open with" (or something) appears then search the program "pythonw.exe" in the Python folder.
+(Despues de haber instalado Python) Abre "vcc_server.pyw" y "vi_cr_ca.pyw" con Python:
 
-Then open the another file named "vi_cr_ca.pyw".
+```
+py vcc_server.pyw
+```
+```
+py vi_cr_ca.pyw
+```
 
-# How to use
+Se puede abrir con dos terminales o abrirlos directamente establenciendo Python como ejecutable predeterminado a los archivos `.pyw`.
 
-The program "vcc_server.pyw" is the server. The accounts are saved and showed in this program.
+# Como usarlo / guia de uso
 
-For starting you should make a account (for testing the program). For do that then click the option "Cuentas" in the principal menu, and press "Nueva" or do the keyboard combination "Ctrl+N".
+El programa `vcc_server.pyw` es el servidor, en este programa se guardan y muestran todas las cuentas y sus datos. Este puede:
+- **Crear** cuentas; dando una identificacion (*"Cedula"*), una contraseña y un saldo inicial. Estas cuentas contienen saldo / dinero el cual sirve para hacer transacciones en el otro programa; `vi_cr_ca.pyw`.
+- **Modificar** el saldo de las cuentas.
+- **Borrar** cuentas.
+- Dar una **bonificacion** *economica* (**"Bono"**) a una cuenta.
 
-Put a starting money amount. Then put a "Cedula" (it means "Identification card", it's only a number that identifies a account). And finally put a password.
-
-In the program "vi_cr_ca.pyw" put a money amount that you'll subtract to the account. Put the "Cedula" (I already explained what it is). And put the password.
-
-And then you have seen the magic of this program :)
+El programa `vi_cr_ca.pyw` por su parte es el cliente, o mejor dicha el programa donde se realizan las transacciones. Al abrir el programa deberas establecer una cuenta beneficiaria (la cual queda registrada (con un tipo de encriptacion que no sirve para encriptar pero no creo que lo necesites encriptar demasiado seguro pues esto no sirve para nada en la vida cotidiana), la cuenta beneficiara debera ser establecida (**no registrada de nuevo**) al abrir el programa, para abrir el menu donde se registran y establecen los beneficiarios (**"Destinatarios"**) debes presionar `0` en la primera etapa de la transaccion, donde se ingresa el monto.
