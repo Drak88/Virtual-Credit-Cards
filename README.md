@@ -21,7 +21,7 @@ py vcc_server.pyw
 py vi_cr_ca.pyw
 ```
 
-Se puede abrir con dos terminales o abrirlos directamente establenciendo Python como ejecutable predeterminado a los archivos `.pyw`.
+Se puede abrir con dos terminales o abrirlos directamente estableciendo Python (aunque es mejor opción usar `pythonw.exe` de la carpeta donde se instaló Python, esto para que no aparezca la consola) como ejecutable predeterminado a los archivos `.pyw`.
 
 # Como usarlo / guia de uso
 
@@ -29,6 +29,6 @@ El programa `vcc_server.pyw` es el servidor, en este programa se guardan y muest
 - **Crear** cuentas; dando una identificacion (*"Cedula"*), una contraseña y un saldo inicial. Estas cuentas contienen saldo / dinero el cual sirve para hacer transacciones en el otro programa; `vi_cr_ca.pyw`.
 - **Modificar** el saldo de las cuentas.
 - **Borrar** cuentas.
-- Dar una **bonificacion** *economica* (**"Bono"**) a una cuenta.
+- Dar una **bonificacion** *economica* (**"Bono"**) a todas las cuentas por igual.
 
 El programa `vi_cr_ca.pyw` por su parte es el cliente, o mejor dicha el programa donde se realizan las transacciones. Al abrir el programa deberas establecer una cuenta beneficiaria (la cual queda registrada (con un tipo de encriptacion que no sirve para encriptar pero no creo que lo necesites encriptar demasiado seguro pues esto no sirve para nada en la vida cotidiana), la cuenta beneficiara debera ser establecida (**no registrada de nuevo**) al abrir el programa, para abrir el menu donde se registran y establecen los beneficiarios (**"Destinatarios"**) debes presionar `0` en la primera etapa de la transaccion, donde se ingresa el monto.
